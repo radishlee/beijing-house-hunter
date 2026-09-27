@@ -1,0 +1,14 @@
+# 禁止任何个人运行时数据进入仓库
+dashboard*
+*_latest.json
+alerts.json
+STATE.md
+baselines.json
+watchlist.json
+最终候选列表.md
+海淀小区全量.json
+logs/
+data/
+__pycache__/
+*.pyc
+.DS_Store
