@@ -9,7 +9,8 @@
 **方式一（推荐）**：把仓库 clone 下来，运行一键安装器（自动检测 ZCode / Claude Code / Codex）：
 
 ```bash
-git clone https://github.com/radishlee/beijing-house-hunter.git
+git clone https://github.com/radishlee/beijing-house-hunter.git   # GitHub
+git clone https://gitee.com/radishlee/beijing-house-hunter.git    # Gitee 镜像（国内推荐）
 cd beijing-house-hunter
 python install.py            # 自动安装到检测到的 Agent skills 目录
 python install.py --list     # 仅查看检测结果
