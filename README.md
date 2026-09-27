@@ -22,6 +22,8 @@ python install.py --dir ~/.claude/skills   # 指定目录
 install-skill-from-github.py --repo radishlee/beijing-house-hunter --path skills/beijing-house-hunter
 ```
 
+**方式二点五**：本仓库自带 Codex plugin manifest（`.codex-plugin/plugin.json`），支持 marketplace 形态安装。
+
 **方式三**：手动 clone 到任意 Agent 的 skills 目录：
 
 ```bash

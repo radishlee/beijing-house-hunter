@@ -1,0 +1,11 @@
+{
+  "name": "beijing-house-hunter",
+  "version": "1.0.0",
+  "description": "Beijing house-hunting SKILL: event-driven search across regulated-housing channels, tax-inclusive price comparison, anti-pollution verification. 北京找房技能包。",
+  "author": "radishlee",
+  "repository": "https://github.com/radishlee/beijing-house-hunter",
+  "license": "MIT",
+  "skills": [
+    "skills/beijing-house-hunter"
+  ]
+}
