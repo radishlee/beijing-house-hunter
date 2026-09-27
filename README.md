@@ -4,6 +4,54 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
+## 30 秒安装
+
+**方式一（推荐）**：把仓库 clone 下来，运行一键安装器（自动检测 ZCode / Claude Code / Codex）：
+
+```bash
+git clone https://github.com/radishlee/beijing-house-hunter.git
+cd beijing-house-hunter
+python install.py            # 自动安装到检测到的 Agent skills 目录
+python install.py --list     # 仅查看检测结果
+python install.py --dir ~/.claude/skills   # 指定目录
+```
+
+**方式二**：Codex 系 skill-installer 直装：
+
+```
+install-skill-from-github.py --repo radishlee/beijing-house-hunter --path skills/beijing-house-hunter
+```
+
+**方式三**：手动 clone 到任意 Agent 的 skills 目录：
+
+```bash
+git clone https://github.com/radishlee/beijing-house-hunter.git ~/.zcode/skills/beijing-house-hunter
+```
+
+装好后对 Agent 说：
+
+```
+用 beijing-house-hunter 帮我找房：预算200万、安置房/商品房次新、房龄10年以内、两居、丰台/大兴
+```
+
+## 最终产出长什么样
+
+Agent 会返回一张**全部经房源级验证**的分级表（示例节选自真实运行）：
+
+```
+## 主清单（含税≤200万，按含税价排序）
+| # | 小区 | 验证房源 | 挂牌 | 含税≈ | 产权/税费 | 证据 | 状态 |
+| 1 | 兴悦居 78.15㎡两居 | 大兴瀛海·8号线 | 208万(满五) | ≈210万 | 三定三限满5年,仅1%契税 | 链家房源页 | ✅ |
+| 2 | 长馨园一期 69㎡两居 | 丰台长辛店 | 128-169万 | 130-172万 | 满五唯一,6套实盘 | 链家+贝壳 | ✅ |
+...
+## 证伪/高风险区（含原因）
+- "长阳天地77㎡三居158万" → 9号院疑商办产权,出局
+## 未覆盖项（如实交代）
+- 逐套契税票年份只能线下核
+```
+
+每一行都有来源 URL，可点击回溯；每一处判断都标注 ✅验证 / ⚠️存疑 / ❌证伪。
+
 ## 这是什么
 
 一套给 AI Agent（Claude/ZCode 等）使用的 **SKILL（技能包）**：按可配置条件（预算/含税口径/户型面积/区域/楼龄/产权类型）穷尽式搜索全渠道房源，并输出**带证据链的验证表**。
@@ -60,14 +108,13 @@
 
 ## 使用方法
 
-把本目录放入 Agent 的 skills 目录（如 `~/.zcode/skills/`），然后对 Agent 说：
+安装后对 Agent 说一句话即可触发（自动按 SKILL.md 工作流执行）：
 
-```
-用 beijing-house-hunter 帮我找房：预算200万、安置房/商品房次新、
-房龄10年以内、两居、丰台/大兴
-```
+- 「用 beijing-house-hunter 帮我找房：预算200万、安置房/商品房次新、两居」
+- 「核实一下 XX 小区的真实挂牌价和产权性质」
+- 「追踪 XX 区安置房下本动态」
 
-或用于核实某个小区的真实挂牌价、追踪某板块安置房下本动态。
+条件全部可配置：预算 / 含税口径开关 / 户型 / 面积 / 区域 / 房龄上限 / 付款方式 / 产权排除项。
 
 **建议搭配**：配合确定性脚本做每日盯梢（如本项目衍生的 `tools_xiaoqu_snapshot.py` + 系统计划任务），Agent 只做每周趋势判断——确定性采集零 token，LLM 只花在刀刃上。
 
